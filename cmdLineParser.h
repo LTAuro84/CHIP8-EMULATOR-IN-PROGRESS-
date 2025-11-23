@@ -20,10 +20,10 @@ public:
     TCmdLineParser();
     void parseCmdLine(int argc, char** arv);
 
-    bool isRomeFileNameSet();
-    string getRomFileName();
-    bool isLogLevelSet();
-    int getLogLevel();
+    bool isRomeFileNameSet(); //checks if rom file name was provided
+    string getRomFileName();  //returns the rom file name
+    bool isLogLevelSet();   //checks if the log level was set
+    int getLogLevel(); //returns the log level
 };
 
 #endif
