@@ -1,3 +1,4 @@
+#include "chip8.h"
 #include "cmdLineParser.h"
 #include "logger.h"
 
@@ -25,8 +26,10 @@ int main (int argc, char** argv) {
         exit(1);
     }
 
-    logger -> log("ROM Path: " + cmdParser.getRomFileName(), ELogLevel::INFO);
-
+    TChip8 emulator;
+    emulator.init(cmdParser.getRomFileName());
+    emulator.run();
+    emulator.deinit();
     return 0;
     
 }
