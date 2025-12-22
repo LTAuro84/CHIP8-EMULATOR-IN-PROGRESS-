@@ -22,6 +22,7 @@ CFILES=
 CPPFILES= 	main.cpp				\
 		    logger.cpp				\
 			cmdLineParser.cpp		\
+			chip8.cpp				\
 			
 			
 
