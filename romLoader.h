@@ -14,7 +14,7 @@ public:
     TRomLoader();
     ~TRomLoader();
 
-    void loadROm(string& file_path, uint8_t* mem);
+    void loadRom(string& file_path, uint8_t* mem);
 };
 
 #endif
