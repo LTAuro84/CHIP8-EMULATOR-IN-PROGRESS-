@@ -6,6 +6,7 @@
 #include <iostream>
 
 #include "logger.h"
+#include "romLoader.h"
 
 #define NUM_KEYS 16
 #define TOTAL_RAM 4096  //4kb of memory
@@ -66,6 +67,8 @@ class TChip8 {
 
         shared_ptr<TLogger> m_logger;
 
+        shared_ptr<TLogger> m_logger;
+        TRomLoader* m_loader;
 public:
     TChip8();
     ~TChip8();
@@ -74,5 +77,7 @@ public:
     void run();
     void deinit();
 };
+
+
 
 #endif
