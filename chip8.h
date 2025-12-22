@@ -19,6 +19,7 @@
 #define CHIP8_RAM_END_ADDR 0x1FF
 #define PROGRAM_START_ADDR 0x200
 #define PROGRAM_END_ADDR 0xFFF
+using namespace std;
 
 //fontset - shapes for the numbers and letters
 const static uint8_t FONTSET[] = {
@@ -38,6 +39,40 @@ const static uint8_t FONTSET[] = {
         0xE0, 0x90, 0x90, 0x90, 0xE0, // D
         0xF0, 0x80, 0xF0, 0x80, 0xF0, // E
         0xF0, 0x80, 0xF0, 0x80, 0x80  // F
+};
+
+class TCpu;
+
+class TChip8 {
+        friend class TCpu;
+
+        //screem
+        uint8_t m_screen[SCREEN_HEIGHT][SCREEN_WIDTH];
+
+        //keyboard
+        uint8_t m_keys[NUM_KEYS];
+        bool m_key_pressed;
+
+        //memory
+        uint8_t m_ram[TOTAL_RAM];
+        uint16_t m_stack[STACK_SIZE];
+
+        //timer
+        uint8_t m_delay_timer;
+        uint8_t m_sound_timer;
+
+        //control
+        bool m_emulatorRunning;
+
+        shared_ptr<TLogger> m_logger;
+
+public:
+    TChip8();
+    ~TChip8();
+
+    void init(string rom_path);
+    void run();
+    void deinit();
 };
 
 #endif
