@@ -67,7 +67,6 @@ class TChip8 {
 
         shared_ptr<TLogger> m_logger;
 
-        shared_ptr<TLogger> m_logger;
         TRomLoader* m_loader;
 public:
     TChip8();
