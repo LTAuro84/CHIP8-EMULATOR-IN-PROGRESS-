@@ -24,6 +24,7 @@ CPPFILES= 	main.cpp				\
 			cmdLineParser.cpp		\
 			chip8.cpp				\
 			romLoader.cpp			\
+			cpu.cpp					\
 			
 			
 
