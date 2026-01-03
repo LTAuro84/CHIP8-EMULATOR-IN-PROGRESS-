@@ -1,11 +1,18 @@
+#include "cpu.h"
 #include "chip8.h"
 #include "logger.h"
+
+#include <iostream>
+#include <chrono>
+#include <thread>
+
 using namespace std;
 
 TChip8::TChip8()
 {
     m_logger = TLogger::getInstance();
     m_emulatorRunning = true;
+    m_cpu = new TCpu(this);
 }
 
 TChip8::~TChip8() {
@@ -34,6 +41,8 @@ void TChip8::init(string rom_path) {
     
     m_key_pressed = false;
 
+    m_cpu->init();
+
     m_loader = new TRomLoader();
     m_loader->loadRom(rom_path, m_ram+PROGRAM_START_ADDR);
     delete m_loader;
@@ -41,9 +50,13 @@ void TChip8::init(string rom_path) {
 }
 
 void TChip8::run() {
-
+    while(m_emulatorRunning) {
+        m_cpu->fetch();
+        m_cpu->decode();
+        m_cpu->execute();
+    }
 }
 
 void TChip8::deinit() {
-
+    m_cpu->deinit();
 }
