@@ -61,3 +61,20 @@ void TCpu::execute() {
 void TCpu::deinit() {
     
 }
+
+// CHIP8 Instructions
+
+//00E0 - CLS
+//Clear the display
+void TCpu::clear_screen() {
+    for (int i = 0; i < SCREEN_HEIGHT; i++)
+        for (int j = 0; j < SCREEN_WIDTH; j++)
+            chip8_system->m_screen[i][j] = 0;
+}
+
+//00EE - RET
+//Return from a subroutine
+void TCpu::return_from_subroutine() {
+    stack_pointer--;
+    program_counter = chip8_system->m_stack[program_counter];
+}
