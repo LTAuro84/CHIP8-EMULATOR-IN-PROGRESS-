@@ -21,6 +21,9 @@ class TCpu {
 
     TChip8* chip8_system;
 
+    void clear_screen();
+    void return_from_subroutine();
+
     std::shared_ptr<TLogger> m_logger;
 
 public:
