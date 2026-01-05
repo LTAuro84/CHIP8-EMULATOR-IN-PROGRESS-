@@ -76,5 +76,43 @@ void TCpu::clear_screen() {
 //Return from a subroutine
 void TCpu::return_from_subroutine() {
     stack_pointer--;
-    program_counter = chip8_system->m_stack[program_counter];
+    program_counter = chip8_system->m_stack[stack_pointer];
+}
+
+//1nnn - JP addr
+//Jump to location nnn
+void TCpu::jump_to_nnn() {
+    program_counter = current_opcode & 0x0FFF;
+}
+
+//2nnn - CALL addr
+//Call subroutine at nnn
+void TCpu::calls_at_nnn() {
+    uint16_t nnn = current_opcode & 0x0FFF;
+
+    chip8_system->m_stack[stack_pointer] = program_counter;
+    stack_pointer++;
+    program_counter = nnn;
+}
+
+//3xkk - SE Vx, byte
+//Skip next instruction if Vx = kk
+void TCpu::skip_instruction() {
+    uint8_t value = current_opcode & 0xFF;
+    uint8_t reg = (current_opcode >> 8) & 0x0F;
+
+    if(data_registers[reg] == value) {
+        program_counter += 2;
+    }
+}
+
+//4xkk - SNE Vx, byte
+//Skip next instruction if Vx != kk
+void TCpu::skip_instruction2() {
+    uint8_t value = current_opcode & 0xFF;
+    uint8_t reg = (current_opcode >> 8) & 0x0F;
+    
+    if (data_registers[reg] != value) {
+        program_counter += 2;
+    }
 }
