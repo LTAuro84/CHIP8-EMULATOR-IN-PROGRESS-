@@ -23,6 +23,10 @@ class TCpu {
 
     void clear_screen();
     void return_from_subroutine();
+    void jump_to_nnn();
+    void calls_at_nnn();
+    void skip_instruction();
+    void skip_instruction2();
 
     std::shared_ptr<TLogger> m_logger;
 
