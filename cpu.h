@@ -27,6 +27,7 @@ class TCpu {
     void calls_at_nnn();
     void skip_instruction();
     void skip_instruction2();
+    void skip_instruction3();
 
     std::shared_ptr<TLogger> m_logger;
 
