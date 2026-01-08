@@ -116,3 +116,9 @@ void TCpu::skip_instruction2() {
         program_counter += 2;
     }
 }
+
+//5xy0 - SE Vx, byte
+//Skip next instruction if Vx = Vy
+void TCpu::skip_instruction3() {
+    
+}
