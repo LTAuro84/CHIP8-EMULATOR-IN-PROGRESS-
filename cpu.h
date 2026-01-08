@@ -28,6 +28,12 @@ class TCpu {
     void skip_instruction();
     void skip_instruction2();
     void skip_instruction3();
+    void register_set();
+    void add_reg_imm();
+    void move_vy_to_vx();
+    void or_vx_vy();
+    void and_vx_vy();
+    void xor_vx_vy();
 
     std::shared_ptr<TLogger> m_logger;
 
