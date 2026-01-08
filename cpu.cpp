@@ -95,6 +95,9 @@ void TCpu::calls_at_nnn() {
     program_counter = nnn;
 }
 
+//kk = 8 bit number
+//Vx = refers to the registers
+
 //3xkk - SE Vx, byte
 //Skip next instruction if Vx = kk
 void TCpu::skip_instruction() {
@@ -120,5 +123,58 @@ void TCpu::skip_instruction2() {
 //5xy0 - SE Vx, byte
 //Skip next instruction if Vx = Vy
 void TCpu::skip_instruction3() {
-    
+    uint8_t reg_x = (current_opcode >> 8) & 0x0F;
+    uint8_t reg_y = (current_opcode >> 4) & 0x0F;
+
+    if (data_registers[reg_x] == data_registers[reg_y]) {
+        program_counter += 2;
+    }
+}
+
+//6xkk - Set register to constant value
+//Vx = kk
+
+void TCpu::register_set() {
+    uint8_t value = current_opcode & 0xFF;
+    uint8_t reg = (current_opcode >> 8) & 0x0F;
+
+    data_registers[reg] = value;
+}
+
+//7xkk - Set Vx = Vx + kk
+void TCpu::add_reg_imm() {
+    uint8_t value = current_opcode & 0xFF;
+    uint8_t reg = (current_opcode >> 8) & 0x0F;
+
+    data_registers[reg] += value;
+}
+
+
+//8xy0 - Load Vx with Vy
+void TCpu::move_vy_to_vx() {
+    uint8_t reg_x = (current_opcode >> 8) & 0x0F;
+    uint8_t reg_y = (current_opcode >> 4) & 0x0F;
+
+    data_registers[reg_x] == data_registers[reg_y];
+}
+
+//8xy1 - OR of Vx with Vy
+void TCpu::or_vx_vy() {
+    uint8_t reg_x = (current_opcode >> 8) & 0x0F;
+    uint8_t reg_y = (current_opcode >> 4) & 0x0F;
+
+    data_registers[reg_x] |= data_registers[reg_y];
+}
+
+//8xy2 - AND of Vx with Vy
+void TCpu::and_vx_vy() {
+    uint8_t reg_x = (current_opcode >> 8) & 0x0F;
+    uint8_t reg_y = (current_opcode >> 4) & 0x0F;
+
+    data_registers[reg_x] &= data_registers[reg_y];
+}
+
+//8xy3 - XOR of Vx with Vy
+void TCpu::xor_vx_vy() {
+
 }
