@@ -34,6 +34,9 @@ class TCpu {
     void or_vx_vy();
     void and_vx_vy();
     void xor_vx_vy();
+    void add_vx_vy();
+    void sub_vx_vy();
+    void shift_right_reg();
 
     std::shared_ptr<TLogger> m_logger;
 
