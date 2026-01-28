@@ -176,5 +176,55 @@ void TCpu::and_vx_vy() {
 
 //8xy3 - XOR of Vx with Vy
 void TCpu::xor_vx_vy() {
+    uint8_t reg_x = (current_opcode >> 8) & 0x0F;
+    uint8_t reg_y = (current_opcode >> 4) & 0x0F;
 
+    data_registers[reg_x] ^= data_registers[reg_y];
+}
+
+//8xy4 - ADD Vx with Vy
+void TCpu::add_vx_vy() {
+    uint8_t reg_x = (current_opcode >> 8) & 0x0F;
+    uint8_t reg_y = (current_opcode >> 4) & 0x0F;
+    uint16_t add = data_registers[reg_x] + data_registers[reg_y];
+
+    if (add > 0xFF) {
+        data_registers[0xF] = 1;
+    }
+    else {
+        data_registers[0xF] = 0;
+    }
+
+    data_registers[reg_x] = add & 0xFF;
+}
+
+//8xy5 - Substract Vy from Vx
+void TCpu::sub_vx_vy() {
+    uint8_t reg_x = (current_opcode >> 8) & 0x0F;
+    uint8_t reg_y = (current_opcode >> 4) & 0x0F;
+
+    if (data_registers[reg_x] > data_registers[reg_y]) {
+            data_registers[0xF] = 1;
+    }
+
+    else {
+        data_registers[0xF] = 0;
+    }
+
+    data_registers[reg_x] -= data_registers[reg_y];
+}
+
+//8xy6 - Vx divided by 2
+void TCpu::shift_right_reg() {
+    uint8_t reg = (current_opcode >> 8) & 0x0F;
+
+    if(data_registers[reg] % 2 == 1) {
+        data_registers[0xF] = 1;
+    }
+
+    else {
+        data_registers[0xF] = 0;
+    }
+
+    data_registers[reg] >>= 1;
 }
