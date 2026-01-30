@@ -39,8 +39,8 @@ class TCpu {
     void shift_right_reg();
     void subtract_vx_vy();
     void shift_left_reg();
+    void skip_next_instruction();
 
-    
     std::shared_ptr<TLogger> m_logger;
 
 public:
