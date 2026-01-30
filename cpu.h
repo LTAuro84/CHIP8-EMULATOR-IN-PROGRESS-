@@ -40,6 +40,7 @@ class TCpu {
     void subtract_vx_vy();
     void shift_left_reg();
     void skip_next_instruction();
+    void TCpu::set_index_reg();
 
     std::shared_ptr<TLogger> m_logger;
 
