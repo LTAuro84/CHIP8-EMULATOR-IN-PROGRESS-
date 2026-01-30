@@ -258,3 +258,13 @@ void TCpu::shift_left_reg() {
 
     data_registers[reg] <<= 1;
 }
+
+//9xy0 - If Vx != Vy, skip next instruction
+void TCpu::skip_next_instruction() {
+    uint8_t reg_x = (current_opcode >> 8) & 0x0F;
+    uint8_t reg_y = (current_opcode >> 4) & 0x0F;
+
+    if (data_registers[reg_x] != data_registers[reg_y]) {
+        program_counter += 2;
+    }
+} 
