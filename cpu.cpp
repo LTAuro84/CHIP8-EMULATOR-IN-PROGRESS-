@@ -228,3 +228,19 @@ void TCpu::shift_right_reg() {
 
     data_registers[reg] >>= 1;
 }
+
+//8xy7 - Subtract Vx from fy
+void TCpu::subtract_vx_vy() {
+    uint8_t reg_x = (current_opcode >> 8) & 0x0F;
+    uint8_t reg_y = (current_opcode >> 4) & 0x0F;
+
+    if (data_registers[reg_y] > data_registers[reg_x]) {
+        data_registers[0xF] = 1;
+    }
+
+    else {
+        data_registers[0xF] = 0;
+    }
+
+    data_registers[reg_x] = data_registers[reg_y] - data_registers[reg_x];
+}
