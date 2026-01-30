@@ -242,5 +242,19 @@ void TCpu::subtract_vx_vy() {
         data_registers[0xF] = 0;
     }
 
-    data_registers[reg_x] = data_registers[reg_y] - data_registers[reg_x];
+    data_registers[reg_x] = data_registers[reg_y] - data_registers[reg_x];             
+}
+
+//8xye - Vx multiplied by 2
+void TCpu::shift_left_reg() {
+    uint8_t reg = (current_opcode >> 8) & 0x0F;
+
+    if (data_registers[reg] & 0x80 == 1) {
+        data_registers[0xF] = 1;
+    }
+    else {
+        data_registers[0xF] = 0;
+    }
+
+    data_registers[reg] <<= 1;
 }
