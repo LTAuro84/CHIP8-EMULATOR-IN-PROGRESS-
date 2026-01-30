@@ -268,3 +268,8 @@ void TCpu::skip_next_instruction() {
         program_counter += 2;
     }
 } 
+
+//ANNN - Load index register
+void TCpu::set_index_reg() {
+    index_register = current_opcode & 0x0FFF;
+}
