@@ -288,3 +288,28 @@ void TCpu::generate_random_number() {
 
     data_registers[reg] = random_number & kk;
 }
+
+//DXYN - Draw sprite
+void TCpu::drawing_sprite() {
+    uint8_t v_reg_x = (current_opcode & 0x0F00) >> 8;
+    uint8_t v_reg_y = (current_opcode & 0x00F0) >> 4;
+    uint8_t sprite_height = current_opcode & 0x000F;
+    uint8_t x = data_registers[v_reg_x];
+    uint8_t y = data_registers[v_reg_y];
+
+    data_registers[0xF] = 0;
+    for (int y_coordinate = 0; y_coordinate < sprite_height; y_coordinate++) {
+        uint8_t pixel = chip8_system->m_ram[index_register + y_coordinate];
+        for (int x_coordinate = 0; x_coordinate < 8; x_coordinate++) {
+            
+            if((pixel & (0x80 >> x_coordinate)) != 0) {
+                
+                if (chip8_system->m_screen[y + y_coordinate][x + x_coordinate] == 1) {
+                    data_registers[0xF] = 1;
+
+                    chip8_system->m_screen[y + y_coordinate][x + x_coordinate] ^= 0x1;
+                }
+            }
+        }
+    }
+}
