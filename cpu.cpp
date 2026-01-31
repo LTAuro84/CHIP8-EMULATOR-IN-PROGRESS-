@@ -279,3 +279,12 @@ void TCpu::jump_to_v0() {
     uint16_t nnn = current_opcode & 0x0FFF;
     program_counter = nnn + data_registers[0];
 }
+
+//CXKK - Generate a random number
+void TCpu::generate_random_number() {
+    uint8_t reg = (current_opcode >> 8) & 0x0F;
+    uint8_t kk = current_opcode & 0xFF;
+    uint8_t random_number = rand() % 256;
+
+    data_registers[reg] = random_number & kk;
+}
