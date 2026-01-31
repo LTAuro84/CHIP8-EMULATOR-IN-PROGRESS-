@@ -273,3 +273,9 @@ void TCpu::skip_next_instruction() {
 void TCpu::set_index_reg() {
     index_register = current_opcode & 0x0FFF;
 }
+
+//BNNN - Jump to NNN+V0
+void TCpu::jump_to_v0() {
+    uint16_t nnn = current_opcode & 0x0FFF;
+    program_counter = nnn + data_registers[0];
+}
