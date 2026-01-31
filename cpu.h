@@ -43,6 +43,7 @@ class TCpu {
     void set_index_reg();
     void jump_to_v0();
     void generate_random_number();
+    void drawing_sprite();
     
 
     std::shared_ptr<TLogger> m_logger;
