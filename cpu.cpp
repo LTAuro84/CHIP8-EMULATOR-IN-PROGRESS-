@@ -313,3 +313,12 @@ void TCpu::drawing_sprite() {
         }
     }
 }
+
+void TCpu::skip_inst_if_vx_pressed() {
+    uint8_t reg = (current_opcode >> 8) & 0x0F;
+    uint8_t val = data_registers[reg];
+
+    if (chip8_system->m_keys[val] != 0) {
+        program_counter += 2;
+    }
+}
