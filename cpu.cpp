@@ -331,3 +331,8 @@ void TCpu::skip_inst_if_vx_isnt_pressed() {
         program_counter += 2;
     }
 }
+
+void TCpu::reg_delay_timer() {
+    uint8_t reg = (current_opcode >> 8) & 0x0F;
+    data_registers[reg] = chip8_system->m_delay_timer;
+}
