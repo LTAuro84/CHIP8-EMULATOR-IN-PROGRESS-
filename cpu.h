@@ -47,6 +47,7 @@ class TCpu {
     void skip_inst_if_vx_pressed();
     void skip_inst_if_vx_isnt_pressed();
     void reg_delay_timer();
+    void wait_for_key_press();
 
     std::shared_ptr<TLogger> m_logger;
 
