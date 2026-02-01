@@ -336,3 +336,19 @@ void TCpu::reg_delay_timer() {
     uint8_t reg = (current_opcode >> 8) & 0x0F;
     data_registers[reg] = chip8_system->m_delay_timer;
 }
+
+void TCpu::wait_for_key_press() {
+    uint8_t reg = (current_opcode >> 8) & 0x0F;
+    bool key_pressed = false;
+
+    for (int i = 0; i < NUM_KEYS; i++) {
+        if (chip8_system->m_keys[i] != 0) {
+            data_registers[reg] = i;
+            key_pressed = true;
+        }
+    }
+
+    if (!key_pressed) {
+        program_counter -= 2;
+    }
+}
