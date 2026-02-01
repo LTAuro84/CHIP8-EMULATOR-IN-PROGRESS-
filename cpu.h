@@ -45,6 +45,7 @@ class TCpu {
     void generate_random_number();
     void drawing_sprite();
     void skip_inst_if_vx_pressed();
+    void skip_inst_if_vx_isnt_pressed();
     
 
     std::shared_ptr<TLogger> m_logger;
