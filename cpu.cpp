@@ -400,3 +400,13 @@ void TCpu::load_memory_from_registers() {
     index_register += (reg + 1);
 }
 
+//FX65 - loads registers from memory
+void TCpu::load_registers_from_memory() {
+    uint8_t reg = (current_opcode >> 8) & 0x0F;
+
+    for (int i = 0; i <= reg; i++) {
+        data_registers[i] = chip8_system->m_ram[index_register + i];
+    }
+
+    index_register += (reg + 1);
+}
