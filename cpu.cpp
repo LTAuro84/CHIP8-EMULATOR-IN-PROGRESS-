@@ -380,3 +380,11 @@ void TCpu::load_sprite_from_vx() {
     uint8_t reg = (current_opcode >> 8) & 0x0F;
     index_register = data_registers[reg] * 0x5;
 }
+
+//FX33 - Store binary decimal representation
+void TCpu::store_binary_code_decimal_representation() {
+    uint8_t reg = (current_opcode >> 8) & 0x0F;
+    chip8_system->m_ram[index_register] = data_registers[reg] / 100;
+    chip8_system->m_ram[index_register + 1] = (data_registers[reg] / 10) % 10;
+    chip8_system->m_ram[index_register + 1] = (data_registers[reg] % 100) % 10;
+}
