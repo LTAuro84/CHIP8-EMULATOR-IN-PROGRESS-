@@ -314,6 +314,7 @@ void TCpu::drawing_sprite() {
     }
 }
 
+//EX93 - Skip instruction if Vx key is pressed
 void TCpu::skip_inst_if_vx_pressed() {
     uint8_t reg = (current_opcode >> 8) & 0x0F;
     uint8_t val = data_registers[reg];
@@ -323,6 +324,7 @@ void TCpu::skip_inst_if_vx_pressed() {
     }
 }
 
+//EXA1 - Skip instruction if Vx key isn't pressed
 void TCpu::skip_inst_if_vx_isnt_pressed() {
        uint8_t reg = (current_opcode >> 8) & 0x0F;
     uint8_t val = data_registers[reg];
@@ -332,11 +334,13 @@ void TCpu::skip_inst_if_vx_isnt_pressed() {
     }
 }
 
+//FX07 - Register with delay timer
 void TCpu::reg_delay_timer() {
     uint8_t reg = (current_opcode >> 8) & 0x0F;
     data_registers[reg] = chip8_system->m_delay_timer;
 }
 
+//FX0A - Waits for key press
 void TCpu::wait_for_key_press() {
     uint8_t reg = (current_opcode >> 8) & 0x0F;
     bool key_pressed = false;
@@ -352,3 +356,5 @@ void TCpu::wait_for_key_press() {
         program_counter -= 2;
     }
 }
+
+//FX15 - Delay timer with register
