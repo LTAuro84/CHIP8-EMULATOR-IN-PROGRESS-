@@ -358,3 +358,7 @@ void TCpu::wait_for_key_press() {
 }
 
 //FX15 - Delay timer with register
+void TCpu::delay_timer_with_reg() {
+    uint8_t reg = (current_opcode >> 8) & 0x0F;
+    chip8_system->m_delay_timer = data_registers[reg];
+}
