@@ -51,6 +51,7 @@ class TCpu {
     void delay_timer_with_reg();
     void sound_timer_with_reg();
     void vx_to_ireg();
+    void load_sprite_from_vx();
 
     std::shared_ptr<TLogger> m_logger;
 
