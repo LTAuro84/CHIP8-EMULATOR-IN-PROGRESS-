@@ -368,3 +368,9 @@ void TCpu::sound_timer_with_reg() {
     uint8_t reg = (current_opcode >> 8) & 0x0F;
     chip8_system->m_sound_timer = data_registers[reg];
 }
+
+//FX1E - Vx to I register
+void TCpu::vx_to_ireg() {
+    uint8_t reg = (current_opcode >> 8) & 0x0F;
+    index_register += data_registers[reg];
+}
