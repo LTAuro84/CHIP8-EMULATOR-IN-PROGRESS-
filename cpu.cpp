@@ -374,3 +374,9 @@ void TCpu::vx_to_ireg() {
     uint8_t reg = (current_opcode >> 8) & 0x0F;
     index_register += data_registers[reg];
 }
+
+//FX29 - I register with sprite location
+void TCpu::load_sprite_from_vx() {
+    uint8_t reg = (current_opcode >> 8) & 0x0F;
+    index_register = data_registers[reg] * 0x5;
+}
