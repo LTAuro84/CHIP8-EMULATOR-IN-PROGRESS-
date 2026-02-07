@@ -388,3 +388,15 @@ void TCpu::store_binary_code_decimal_representation() {
     chip8_system->m_ram[index_register + 1] = (data_registers[reg] / 10) % 10;
     chip8_system->m_ram[index_register + 1] = (data_registers[reg] % 100) % 10;
 }
+
+//FX55 - load memory from registers
+void TCpu::load_memory_from_registers() {
+    uint8_t reg = (current_opcode >> 8) & 0x0F;
+    
+    for (int i = 0; i <= reg; i++) {
+        chip8_system->m_ram[index_register + i] = data_registers[i];
+    }
+
+    index_register += (reg + 1);
+}
+
