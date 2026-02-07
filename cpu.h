@@ -52,6 +52,7 @@ class TCpu {
     void sound_timer_with_reg();
     void vx_to_ireg();
     void load_sprite_from_vx();
+    void store_binary_code_decimal_representation();
 
     std::shared_ptr<TLogger> m_logger;
 
