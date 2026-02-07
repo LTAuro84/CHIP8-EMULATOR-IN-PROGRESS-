@@ -362,3 +362,9 @@ void TCpu::delay_timer_with_reg() {
     uint8_t reg = (current_opcode >> 8) & 0x0F;
     chip8_system->m_delay_timer = data_registers[reg];
 }
+
+//FX18 - Sound timer with register
+void TCpu::sound_timer_with_reg() {
+    uint8_t reg = (current_opcode >> 8) & 0x0F;
+    chip8_system->m_sound_timer = data_registers[reg];
+}
