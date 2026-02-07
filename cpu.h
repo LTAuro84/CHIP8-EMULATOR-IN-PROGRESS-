@@ -49,6 +49,7 @@ class TCpu {
     void reg_delay_timer();
     void wait_for_key_press();
     void delay_timer_with_reg();
+    void sound_timer_with_reg();
 
     std::shared_ptr<TLogger> m_logger;
 
