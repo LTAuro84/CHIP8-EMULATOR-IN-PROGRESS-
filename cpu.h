@@ -54,6 +54,7 @@ class TCpu {
     void load_sprite_from_vx();
     void store_binary_code_decimal_representation();
     void load_memory_from_registers();
+    void load_registers_from_memory();
 
     std::shared_ptr<TLogger> m_logger;
 
