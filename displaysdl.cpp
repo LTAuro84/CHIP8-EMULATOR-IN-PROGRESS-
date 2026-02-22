@@ -1,3 +1,4 @@
+#include <SDL2/SDL_events.h>
 #include <SDL2/SDL_pixels.h>
 #include <SDL2/SDL_stdinc.h>
 #include <SDL2/SDL_surface.h>
@@ -75,3 +76,15 @@ void TDisplaySDL::draw(uint8_t framebuffer[][64], uint16_t width, uint16_t heigh
         SDL_UnlockSurface(surface);
     }
 }
+
+void TDisplaySDL::update() {
+    SDL_UpdateWindowSurface(window);
+
+    SDL_Event e;
+    if (SDL_PollEvent(&e) != 0) {
+        if (e.type == SDL_QUIT) {
+            m_loggerInstance->log("Closing: ", ELogLevel::ERROR);
+        }
+    }
+}
+
