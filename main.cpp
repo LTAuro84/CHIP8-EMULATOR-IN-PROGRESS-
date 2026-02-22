@@ -1,5 +1,6 @@
 #include "chip8.h"
 #include "cmdLineParser.h"
+#include "displaysdl.h"
 #include "logger.h"
 
 using namespace std;
@@ -26,6 +27,7 @@ int main (int argc, char** argv) {
         exit(1);
     }
 
+    TDisplaySDL display;
     TChip8 emulator;
     emulator.init(cmdParser.getRomFileName());
     emulator.run();
