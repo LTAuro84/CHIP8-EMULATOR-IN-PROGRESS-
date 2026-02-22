@@ -88,3 +88,7 @@ void TDisplaySDL::update() {
     }
 }
 
+void TDisplaySDL::deinit() {
+    SDL_DestroyWindow(window);
+    SDL_Quit();
+}
