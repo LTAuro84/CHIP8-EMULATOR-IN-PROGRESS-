@@ -18,4 +18,8 @@ void TDisplaySDL::init() {
     m_loggerInstance->log("SDL ERROR: " + errorSdl, ELogLevel::ERROR);
     exit(1);
     }
+
+    window = SDL_CreateWindow("CHIP8", SDL_WINDOWPOS_UNDEFINED,
+                                    SDL_WINDOWPOS_UNDEFINED,
+                                    1280, 720, SDL_WINDOW_SHOWN);
 }
