@@ -70,4 +70,8 @@ void TDisplaySDL::draw(uint8_t framebuffer[][64], uint16_t width, uint16_t heigh
             }
         }
     }
+
+    if (SDL_MUSTLOCK(surface)) {
+        SDL_UnlockSurface(surface);
+    }
 }
