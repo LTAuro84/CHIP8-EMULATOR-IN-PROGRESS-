@@ -1,3 +1,4 @@
+#include <SDL2/SDL_pixels.h>
 #include <SDL2/SDL_stdinc.h>
 #include <SDL2/SDL_surface.h>
 #include <SDL2/SDL_video.h>
@@ -49,5 +50,24 @@ void TDisplaySDL::draw(uint8_t framebuffer[][64], uint16_t width, uint16_t heigh
     if (SDL_MUSTLOCK(surface)) {
         SDL_LockSurface(surface);
     }
-    
+
+    //Black
+    Uint32 color = SDL_MapRGB(surface->format, 0x00, 0x00, 0x00);
+    SDL_FillRect(surface, NULL, color);
+
+    //White
+    Uint32 white = SDL_MapRGB(surface->format, 255, 255, 255); 
+    Uint32 green = SDL_MapRGB(surface->format, 0, 255, 0);
+
+    for (auto i=0; i < height; i++) {
+        for (auto j = 0; j < width; j++) {
+            if (framebuffer[i][j] == 1) {
+                for (auto x = 0; x < zoom; x++) {
+                    for (auto y = 0; y < zoom; y++) {
+                        setPixel(surface, j * zoom + x, i * zoom + y, green);
+                    }
+                }
+            }
+        }
+    }
 }
