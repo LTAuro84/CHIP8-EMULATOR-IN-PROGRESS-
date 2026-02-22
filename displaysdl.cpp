@@ -1,3 +1,4 @@
+#include <SDL2/SDL_video.h>
 #include <cstdint>
 #include <SDL2/SDL.h>
 #include "displaysdl.h"
@@ -29,4 +30,6 @@ void TDisplaySDL::init() {
         m_loggerInstance->log("Window error: " + errorWindow, ELogLevel::ERROR);
         exit(1);
     }
+
+    surface = SDL_GetWindowSurface(window);
 }
