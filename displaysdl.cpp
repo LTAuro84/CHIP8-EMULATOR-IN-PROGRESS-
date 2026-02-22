@@ -42,3 +42,12 @@ void setPixel(SDL_Surface *surface, int x, int y, Uint32 color) {
         pixels[(y * surface->w) + x] = color;
     }
 }
+
+void TDisplaySDL::draw(uint8_t framebuffer[][64], uint16_t width, uint16_t height) {
+    uint8_t zoom = 10;
+
+    if (SDL_MUSTLOCK(surface)) {
+        SDL_LockSurface(surface);
+    }
+    
+}
