@@ -5,6 +5,7 @@
 #include <cstdint>
 #include <iostream>
 
+#include "display.h"
 #include "logger.h"
 #include "romLoader.h"
 
@@ -70,6 +71,9 @@ class TChip8 {
         shared_ptr<TLogger> m_logger;
 
         TRomLoader* m_loader;
+
+        //Display
+        TDisplay* display;
 public:
     TChip8();
     ~TChip8();
@@ -77,6 +81,8 @@ public:
     void init(string rom_path);
     void run();
     void deinit();
+
+    void setDisplay(TDisplay* display);
 };
 
 
