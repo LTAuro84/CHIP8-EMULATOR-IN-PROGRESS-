@@ -25,7 +25,7 @@ CPPFILES= 	main.cpp				\
 			chip8.cpp				\
 			romLoader.cpp			\
 			cpu.cpp					\
-			
+			displaysdl.cpp			\
 			
 
 
