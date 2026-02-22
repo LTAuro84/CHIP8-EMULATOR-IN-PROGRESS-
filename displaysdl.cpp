@@ -1,6 +1,7 @@
 #include <cstdint>
 #include <SDL2/SDL.h>
 #include "displaysdl.h"
+#include "logger.h"
 using namespace std;
 
 TDisplaySDL::TDisplaySDL() {
@@ -22,4 +23,10 @@ void TDisplaySDL::init() {
     window = SDL_CreateWindow("CHIP8", SDL_WINDOWPOS_UNDEFINED,
                                     SDL_WINDOWPOS_UNDEFINED,
                                     1280, 720, SDL_WINDOW_SHOWN);
+    
+    if (!window) {
+        string errorWindow(SDL_GetError());
+        m_loggerInstance->log("Window error: " + errorWindow, ELogLevel::ERROR);
+        exit(1);
+    }
 }
