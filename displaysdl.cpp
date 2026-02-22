@@ -1,3 +1,5 @@
+#include <SDL2/SDL_stdinc.h>
+#include <SDL2/SDL_surface.h>
 #include <SDL2/SDL_video.h>
 #include <cstdint>
 #include <SDL2/SDL.h>
@@ -32,4 +34,11 @@ void TDisplaySDL::init() {
     }
 
     surface = SDL_GetWindowSurface(window);
+}
+
+void setPixel(SDL_Surface *surface, int x, int y, Uint32 color) {
+    if (x >= 0 && x < surface->w && y >= 0 && y < surface->h ) {
+        Uint32 *pixels = (Uint32 *)surface->pixels;
+        pixels[(y * surface->w) + x] = color;
+    }
 }
