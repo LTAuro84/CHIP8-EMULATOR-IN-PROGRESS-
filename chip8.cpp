@@ -1,5 +1,6 @@
 #include "cpu.h"
 #include "chip8.h"
+#include "display.h"
 #include "logger.h"
 
 #include <iostream>
@@ -13,6 +14,7 @@ TChip8::TChip8()
     m_logger = TLogger::getInstance();
     m_emulatorRunning = true;
     m_cpu = new TCpu(this);
+    m_display = nullptr;
 }
 
 TChip8::~TChip8() {
@@ -46,6 +48,8 @@ void TChip8::init(string rom_path) {
     m_loader = new TRomLoader();
     m_loader->loadRom(rom_path, m_ram+PROGRAM_START_ADDR);
     delete m_loader;
+
+    m_display->init();
         
 }
 
@@ -54,9 +58,18 @@ void TChip8::run() {
         m_cpu->fetch();
         m_cpu->decode();
         m_cpu->execute();
+
+        m_display->draw(m_screen, SCREEN_WIDTH, SCREEN_HEIGHT);
+        m_display->update();
     }
 }
 
 void TChip8::deinit() {
     m_cpu->deinit();
+
+    m_display->deinit();
+}
+
+void TChip8::setDisplay(TDisplay* display) {
+    m_display = display;
 }

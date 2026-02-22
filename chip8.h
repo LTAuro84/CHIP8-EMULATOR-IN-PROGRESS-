@@ -73,7 +73,7 @@ class TChip8 {
         TRomLoader* m_loader;
 
         //Display
-        TDisplay* display;
+        TDisplay* m_display;
 public:
     TChip8();
     ~TChip8();
