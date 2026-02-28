@@ -82,6 +82,17 @@ void TChip8::run() {
                 m_sound_timer--;
             }
         }
+
+        end = clock::now();
+
+        chrono::duration<double, micro> loop_time = end - start;
+        auto elapsed_time = chrono::duration_cast<chrono::milliseconds>(end - start);
+        auto sleep_time = desired_cycle_time - elapsed_time;
+        if (sleep_time.count() > 0) {
+            this_thread::sleep_for(sleep_time);
+        }
+
+        display_update_delay_time++;
         
     }
 }
