@@ -54,13 +54,35 @@ void TChip8::init(string rom_path) {
 }
 
 void TChip8::run() {
+
+    using clock = chrono::high_resolution_clock;
+    clock::time_point start, end;
+    const chrono::milliseconds desired_cycle_time(1);
+
+    int display_update_delay_time = 0;
+
     while(m_emulatorRunning) {
+
+        start = clock::now();
+
         m_cpu->fetch();
         m_cpu->decode();
         m_cpu->execute();
 
-        m_display->draw(m_screen, SCREEN_WIDTH, SCREEN_HEIGHT);
-        m_display->update();
+        if (display_update_delay_time >= 20) {
+            display_update_delay_time = 0;
+            m_display->draw(m_screen, SCREEN_WIDTH, SCREEN_HEIGHT);
+            m_display->update();
+
+            if (m_delay_timer > 0) {
+                m_delay_timer--;
+            }
+
+            if (m_sound_timer > 0) {
+                m_sound_timer--;
+            }
+        }
+        
     }
 }
 
