@@ -36,16 +36,17 @@ CPPOBJS=$(patsubst %.cpp,%.o,$(CPPFILES))
 
 OBJS=$(ASMOBJS) $(COBJS) $(CPPOBJS)
 # ==================================================================
-# Header flags
-CC_HEADERS= -I/usr/include/SDL2
+
+CC_FLAGS = -g -std=c++20 -lSDL2
+CC_HEADERS += -I/usr/include/SDL2
 
 
-# Compiler flags
-CC_FLAGS= -g -std=c++20 -lSDL2
+
+
 
 
 # Linker flags
-LD_FLAGS=
+LD_FLAGS= -lSDL2
 
 
 #===================================================================

@@ -31,7 +31,6 @@ int main (int argc, char** argv) {
     TChip8 emulator;
 
     emulator.setDisplay(&display);
-    
     emulator.init(cmdParser.getRomFileName());
     emulator.run();
     emulator.deinit();
