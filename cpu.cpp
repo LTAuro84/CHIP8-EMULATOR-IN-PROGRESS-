@@ -40,6 +40,13 @@ void TCpu::execute() {
     {
 
         case 0x0:
+            if (current_opcode == 0x00E0) 
+                clear_screen();
+            
+            else if (current_opcode == 0x00EE) 
+                return_from_subroutine();
+            break;
+            
         case 0x1: 
         case 0x2:
         case 0x3:
@@ -155,7 +162,7 @@ void TCpu::move_vy_to_vx() {
     uint8_t reg_x = (current_opcode >> 8) & 0x0F;
     uint8_t reg_y = (current_opcode >> 4) & 0x0F;
 
-    data_registers[reg_x] == data_registers[reg_y];
+    data_registers[reg_x] = data_registers[reg_y];
 }
 
 //8xy1 - OR of Vx with Vy
@@ -386,7 +393,7 @@ void TCpu::store_binary_code_decimal_representation() {
     uint8_t reg = (current_opcode >> 8) & 0x0F;
     chip8_system->m_ram[index_register] = data_registers[reg] / 100;
     chip8_system->m_ram[index_register + 1] = (data_registers[reg] / 10) % 10;
-    chip8_system->m_ram[index_register + 1] = (data_registers[reg] % 100) % 10;
+    chip8_system->m_ram[index_register + 2] = (data_registers[reg] % 100) % 10;
 }
 
 //FX55 - load memory from registers
