@@ -426,8 +426,8 @@ void TCpu::drawing_sprite() {
                 if (chip8_system->m_screen[y + y_coordinate][x + x_coordinate] == 1) {
                     data_registers[0xF] = 1;
 
-                    chip8_system->m_screen[y + y_coordinate][x + x_coordinate] ^= 0x1;
                 }
+                 chip8_system->m_screen[y + y_coordinate][x + x_coordinate] ^= 0x1;
             }
         }
     }
