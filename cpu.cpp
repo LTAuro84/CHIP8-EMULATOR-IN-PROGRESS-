@@ -170,6 +170,10 @@ void TCpu::execute() {
             }
             break;
         }
+
+        default:
+            m_logger->log("Unknown opcode: " + std::to_string(instruction), ELogLevel::ERROR);
+            exit(1);
     }
 }
 
