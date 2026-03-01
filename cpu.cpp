@@ -368,7 +368,7 @@ void TCpu::subtract_vx_vy() {
 void TCpu::shift_left_reg() {
     uint8_t reg = (current_opcode >> 8) & 0x0F;
 
-    if (data_registers[reg] & 0x80 == 1) {
+    if ((data_registers[reg] & 0x80) != 0) {
         data_registers[0xF] = 1;
     }
     else {
