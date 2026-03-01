@@ -69,6 +69,7 @@ void TCpu::execute() {
         case 0x7:
             add_reg_imm();
             break;
+
         case 0x8: {
             uint8_t subtype = current_opcode & 0x000F;
             switch (subtype) {
@@ -105,13 +106,35 @@ void TCpu::execute() {
             }
             break;
         }
+
         case 0x9:
+            skip_next_instruction();
+            break;
         case 0xA:
+            set_index_reg();
+            break;
         case 0xB:
+            jump_to_v0();
+            break;
         case 0xC:
+            generate_random_number();
+            break;
         case 0xD:
-        case 0xE:
-        case 0xF: m_logger->log("Instruction Opcode Not Implemented", ELogLevel::ERROR); exit(1); break;
+            drawing_sprite();
+            break;
+        case 0xE: {
+            uint8_t subtype = current_opcode & 0x00FF;
+            if (subtype == 0x9E)
+                skip_inst_if_vx_pressed();
+            else if (subtype == 0xA1)
+                skip_inst_if_vx_isnt_pressed();
+            else {
+                m_logger->log("Unknown Ex opcode", ELogLevel::ERROR);
+                exit(1);
+            }
+            break;
+        }
+        case 0xF:
     }
 }
 
