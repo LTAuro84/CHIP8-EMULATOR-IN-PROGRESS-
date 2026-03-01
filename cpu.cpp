@@ -54,9 +54,14 @@ void TCpu::execute() {
             calls_at_nnn();
             break;
         case 0x3:
-            
+            skip_instruction();
+            break;
         case 0x4:
+            skip_instruction2();
+            break;
         case 0x5:
+            skip_instruction3();
+            break;
         case 0x6:
         case 0x7:
         case 0x8:
