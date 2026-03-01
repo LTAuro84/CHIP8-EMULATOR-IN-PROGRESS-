@@ -99,7 +99,11 @@ void TCpu::execute() {
                 case 0xE:
                     shift_left_reg();
                     break;
+                default:
+                    m_logger->log("Unknown 8xy opcode", ELogLevel::ERROR);
+                    exit(1);
             }
+            break;
         }
         case 0x9:
         case 0xA:
