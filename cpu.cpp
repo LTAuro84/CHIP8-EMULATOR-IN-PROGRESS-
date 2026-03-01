@@ -134,7 +134,42 @@ void TCpu::execute() {
             }
             break;
         }
-        case 0xF:
+        case 0xF: {
+            uint8_t subtype = current_opcode & 0x00FF;
+            switch (subtype) {
+                case 0x07:
+                    reg_delay_timer();
+                    break;
+                case 0x0A:
+                    wait_for_key_press();
+                    break;
+                case 0x15:
+                    delay_timer_with_reg();
+                    break;
+                case 0x18:
+                    sound_timer_with_reg();
+                    break;
+                case 0x1E:
+                    vx_to_ireg();
+                    break;
+                case 0x29:
+                    load_sprite_from_vx();
+                    break;
+                case 0x33:
+                    store_binary_code_decimal_representation();
+                    break;
+                case 0x55:
+                    load_memory_from_registers();
+                    break;
+                case 0x65:
+                    load_registers_from_memory();
+                    break;
+                default:
+                    m_logger->log("Unknown Fx opcode", ELogLevel::ERROR);
+                    exit(1);
+            }
+            break;
+        }
     }
 }
 
