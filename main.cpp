@@ -29,6 +29,9 @@ int main (int argc, char** argv) {
 
     TDisplaySDL display;
     TChip8 emulator;
+
+    emulator.setDisplay(&display);
+    
     emulator.init(cmdParser.getRomFileName());
     emulator.run();
     emulator.deinit();

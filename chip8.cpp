@@ -3,7 +3,7 @@
 #include "display.h"
 #include "logger.h"
 
-#include <iostream>
+//#include <iostream>
 #include <chrono>
 #include <thread>
 
