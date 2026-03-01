@@ -1,3 +1,4 @@
+#include <cstdint>
 #include <cstdlib>
 #include <ctime>
 
@@ -68,7 +69,38 @@ void TCpu::execute() {
         case 0x7:
             add_reg_imm();
             break;
-        case 0x8:
+        case 0x8: {
+            uint8_t subtype = current_opcode & 0x000F;
+            switch (subtype) {
+                case 0x0:
+                    move_vy_to_vx();
+                    break;
+                case 0x1:
+                    or_vx_vy();
+                    break;
+                case 0x2:
+                    and_vx_vy();
+                    break;
+                case 0x3:
+                    xor_vx_vy();
+                    break;
+                case 0x4:
+                    add_vx_vy();
+                    break;
+                case 0x5:
+                    sub_vx_vy();
+                    break;
+                case 0x6:
+                    shift_right_reg();
+                    break;
+                case 0x7:
+                    subtract_vx_vy();
+                    break;
+                case 0xE:
+                    shift_left_reg();
+                    break;
+            }
+        }
         case 0x9:
         case 0xA:
         case 0xB:
