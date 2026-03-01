@@ -46,10 +46,15 @@ void TCpu::execute() {
             else if (current_opcode == 0x00EE) 
                 return_from_subroutine();
             break;
-            
-        case 0x1: 
+
+        case 0x1:
+            jump_to_nnn();
+            break;
         case 0x2:
+            calls_at_nnn();
+            break;
         case 0x3:
+            
         case 0x4:
         case 0x5:
         case 0x6:
