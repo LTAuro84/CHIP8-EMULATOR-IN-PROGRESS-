@@ -63,7 +63,11 @@ void TCpu::execute() {
             skip_instruction3();
             break;
         case 0x6:
+            register_set();
+            break;
         case 0x7:
+            add_reg_imm();
+            break;
         case 0x8:
         case 0x9:
         case 0xA:
