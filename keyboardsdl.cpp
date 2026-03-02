@@ -124,5 +124,12 @@ void KeyboardSDL::update(uint8_t* key_map, bool* running) {
                     break;
             }
         }
+        else if (e.type == SDL_QUIT) {
+            *running = false;
+        }
     }
+}
+
+void KeyboardSDL::deinit() {
+    
 }
