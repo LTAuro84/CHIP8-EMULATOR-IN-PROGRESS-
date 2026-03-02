@@ -26,6 +26,7 @@ CPPFILES= 	main.cpp				\
 			romLoader.cpp			\
 			cpu.cpp					\
 			displaysdl.cpp			\
+			keyboardsdl.cpp			\
 			
 
 
