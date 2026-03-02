@@ -15,6 +15,7 @@ TChip8::TChip8()
     m_emulatorRunning = true;
     m_cpu = new TCpu(this);
     m_display = nullptr;
+    m_keyboard = nullptr;
 }
 
 TChip8::~TChip8() {
@@ -50,6 +51,8 @@ void TChip8::init(string rom_path) {
     delete m_loader;
 
     m_display->init();
+
+    m_keyboard->init();
         
 }
 
@@ -83,6 +86,7 @@ void TChip8::run() {
             }
         }
 
+        m_keyboard->update(m_keys, &m_emulatorRunning);
         end = clock::now();
 
         chrono::duration<double, micro> loop_time = end - start;
@@ -101,8 +105,14 @@ void TChip8::deinit() {
     m_cpu->deinit();
 
     m_display->deinit();
+
+    m_keyboard->deinit();
 }
 
 void TChip8::setDisplay(TDisplay* display) {
     m_display = display;
+}
+
+void TChip8::setKeyboard(Keyboard* keyboard) {
+    m_keyboard = keyboard;
 }
