@@ -1,6 +1,7 @@
 #include "chip8.h"
 #include "cmdLineParser.h"
 #include "displaysdl.h"
+#include "keyboardsdl.h"
 #include "logger.h"
 
 using namespace std;
@@ -28,9 +29,11 @@ int main (int argc, char** argv) {
     }
 
     TDisplaySDL display;
+    KeyboardSDL keyboard;
     TChip8 emulator;
 
     emulator.setDisplay(&display);
+    emulator.setKeyboard(&keyboard);
     emulator.init(cmdParser.getRomFileName());
     emulator.run();
     emulator.deinit();
