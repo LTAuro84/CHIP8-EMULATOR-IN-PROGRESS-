@@ -6,6 +6,7 @@
 #include <iostream>
 
 #include "display.h"
+#include "keyboard.h"
 #include "logger.h"
 #include "romLoader.h"
 
@@ -74,6 +75,9 @@ class TChip8 {
 
         //Display
         TDisplay* m_display;
+
+        //Keyboard
+        Keyboard* m_keyboard;
 public:
     TChip8();
     ~TChip8();
@@ -83,6 +87,7 @@ public:
     void deinit();
 
     void setDisplay(TDisplay* display);
+    void setKeyboard(Keyboard* keyboard);
 };
 
 
