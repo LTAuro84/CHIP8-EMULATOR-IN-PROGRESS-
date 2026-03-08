@@ -9,6 +9,7 @@
 #include "keyboard.h"
 #include "logger.h"
 #include "romLoader.h"
+#include "sound.h"
 
 #define NUM_KEYS 16
 #define TOTAL_RAM 4096  //4kb of memory
@@ -78,6 +79,9 @@ class TChip8 {
 
         //Keyboard
         Keyboard* m_keyboard;
+
+        //Sound
+        TSound* m_sound;
 public:
     TChip8();
     ~TChip8();
@@ -88,6 +92,7 @@ public:
 
     void setDisplay(TDisplay* display);
     void setKeyboard(Keyboard* keyboard);
+    void setSound(TSound* sound);
 };
 
 
