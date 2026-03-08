@@ -27,6 +27,7 @@ CPPFILES= 	main.cpp				\
 			cpu.cpp					\
 			displaysdl.cpp			\
 			keyboardsdl.cpp			\
+			soundsdl.cpp			\
 			
 
 
