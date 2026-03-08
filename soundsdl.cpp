@@ -3,6 +3,7 @@
 #include <cmath>
 
 #include "soundsdl.h"
+#include "logger.h"
 
 const int SAMPLE_RATE = 44100;
 const int AMPLITUDE = 28000;
@@ -22,5 +23,21 @@ void audioCallBack(void* userdata, Uint8* stream, int len) {
 
         stream[i] = sample & 0xFF;
         stream[i + 1] = (sample >> 8) & 0xFF;
+    }
+}
+
+TSoundSDL::TSoundSDL() {
+    m_logger = TLogger::getInstance();
+}
+
+TSoundSDL::~TSoundSDL() {
+
+}
+
+void TSoundSDL::init() {
+    if (SDL_Init(SDL_INIT_AUDIO) < 0) {
+        std::string errorSdl(SDL_GetError());
+        m_logger->log("SDL Sound Init Error: " + errorSdl, ELogLevel::ERROR);
+        exit(1);
     }
 }
