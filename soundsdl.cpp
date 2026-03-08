@@ -55,3 +55,17 @@ void TSoundSDL::init() {
         exit(1);
     }
 }
+
+void TSoundSDL::playTune() {
+    SDL_PauseAudio(0);
+}
+
+void TSoundSDL::pauseTune() {
+    SDL_PauseAudio(1);
+}
+
+void TSoundSDL::deinit() {
+    SDL_CloseAudio();
+    SDL_Quit();
+}
+
