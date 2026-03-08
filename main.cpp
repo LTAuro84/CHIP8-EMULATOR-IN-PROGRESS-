@@ -3,6 +3,7 @@
 #include "displaysdl.h"
 #include "keyboardsdl.h"
 #include "logger.h"
+#include "soundsdl.h"
 
 using namespace std;
 
@@ -31,9 +32,11 @@ int main (int argc, char** argv) {
     TDisplaySDL display;
     KeyboardSDL keyboard;
     TChip8 emulator;
+    TSoundSDL sound;
 
     emulator.setDisplay(&display);
     emulator.setKeyboard(&keyboard);
+    emulator.setSound(&sound);
     emulator.init(cmdParser.getRomFileName());
     emulator.run();
     emulator.deinit();
