@@ -48,4 +48,10 @@ void TSoundSDL::init() {
     audioSpec.samples = 4096;
     audioSpec.callback = audioCallBack;
     audioSpec.userdata = nullptr;
+
+    if (SDL_OpenAudio(&audioSpec, nullptr) < 0) {
+        std::string errorSdl(SDL_GetError());
+        m_logger->log("Failed to open audio device: " + errorSdl, ELogLevel::ERROR);
+        exit(1);
+    }
 }
