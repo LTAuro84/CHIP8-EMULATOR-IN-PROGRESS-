@@ -16,6 +16,7 @@ TChip8::TChip8()
     m_cpu = new TCpu(this);
     m_display = nullptr;
     m_keyboard = nullptr;
+    m_sound = nullptr;
 }
 
 TChip8::~TChip8() {
@@ -52,6 +53,8 @@ void TChip8::init(string rom_path) {
 
     m_display->init();
 
+    m_sound->init();
+
     m_keyboard->init();
         
 }
@@ -83,6 +86,10 @@ void TChip8::run() {
 
             if (m_sound_timer > 0) {
                 m_sound_timer--;
+                m_sound->playTune();
+            }
+            else {
+                m_sound->pauseTune();
             }
         }
 
@@ -107,6 +114,7 @@ void TChip8::deinit() {
     m_display->deinit();
 
     m_keyboard->deinit();
+    m_sound->deinit();
 }
 
 void TChip8::setDisplay(TDisplay* display) {
@@ -115,4 +123,8 @@ void TChip8::setDisplay(TDisplay* display) {
 
 void TChip8::setKeyboard(Keyboard* keyboard) {
     m_keyboard = keyboard;
+}
+
+void TChip8::setSound(TSound* sound) {
+    m_sound = sound;
 }
