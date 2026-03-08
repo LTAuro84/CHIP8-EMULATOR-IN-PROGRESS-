@@ -1,4 +1,5 @@
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_audio.h>
 #include <SDL2/SDL_stdinc.h>
 #include <cmath>
 
@@ -40,4 +41,11 @@ void TSoundSDL::init() {
         m_logger->log("SDL Sound Init Error: " + errorSdl, ELogLevel::ERROR);
         exit(1);
     }
+
+    audioSpec.freq = SAMPLE_RATE;
+    audioSpec.format = AUDIO_S16SYS;
+    audioSpec.channels = 1;
+    audioSpec.samples = 4096;
+    audioSpec.callback = audioCallBack;
+    audioSpec.userdata = nullptr;
 }
